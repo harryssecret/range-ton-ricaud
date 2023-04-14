@@ -10,9 +10,11 @@ public class Tool
     [Required]
     public string? Name { get; set; }
 
+    [Display(Name = "Added At")]
     [DataType(DataType.DateTime)]
     public DateTime AddedAt { get; set; }
 
+    [Display(Name = "Broken At")]
     [DataType(DataType.DateTime)]
     public DateTime? BrokenAt { get; set; }
 
