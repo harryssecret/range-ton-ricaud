@@ -10,5 +10,5 @@ public class Garage
     [Display(Name = "City Name")]
     public string CityName { get; set; }
 
-    public ICollection<Tool> Tools { get; }
+    public ICollection<Tool>? Tools { get; }
 }

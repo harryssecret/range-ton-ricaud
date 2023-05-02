@@ -11,5 +11,6 @@ namespace range_ton_ricaud.Data
         {
         }
         public DbSet<range_ton_ricaud.Models.Garage> Garage { get; set; } = default!;
+        public DbSet<range_ton_ricaud.Models.Tool> Tool { get; set; } = default!;
     }
 }

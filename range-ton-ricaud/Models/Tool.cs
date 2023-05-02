@@ -11,13 +11,13 @@ public class Tool
     public string? Name { get; set; }
 
     [Display(Name = "Added At")]
-    [DataType(DataType.DateTime)]
-    public DateTime AddedAt { get; set; }
+    public DateTime AddedAt { get; set; } = DateTime.UtcNow;
 
     [Display(Name = "Broken At")]
-    [DataType(DataType.DateTime)]
-    public DateTime? BrokenAt { get; set; }
+    public DateTime? BrokenAt { get; set; } = null!;
 
     public int GarageId { get; set; }
-    public Garage Garage { get; set; } = null!;
+    public Garage? Garage { get; set; }
+
+    public ICollection<ToolKeyword>? ToolKeywords { get; set; }
 }
