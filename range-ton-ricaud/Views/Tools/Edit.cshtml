@@ -29,6 +29,10 @@
                 <span asp-validation-for="GarageId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ToolKeywords" class="control-label"></label>
+                <select asp-for="ToolKeywords" class="form-control" asp-items="ViewBag.ToolKeywords"></select>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

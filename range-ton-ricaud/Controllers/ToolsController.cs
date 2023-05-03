@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using range_ton_ricaud.Data;
@@ -36,6 +32,7 @@ namespace range_ton_ricaud.Controllers
 
             var tool = await _context.Tool
                 .Include(t => t.Garage)
+                .Include(t => t.ToolKeywords)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tool == null)
             {
@@ -48,7 +45,8 @@ namespace range_ton_ricaud.Controllers
         // GET: Tools/Create
         public IActionResult Create()
         {
-            ViewData["GarageId"] = new SelectList(_context.Garage, "Id", "Id");
+            ViewData["GarageId"] = new SelectList(_context.Garage, "Id", "Name");
+            ViewData["ToolKeywords"] = new SelectList(_context.ToolKeyword, "Id", "Name");
             return View();
         }
 
@@ -57,7 +55,7 @@ namespace range_ton_ricaud.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,GarageId")] Tool tool)
+        public async Task<IActionResult> Create([Bind("Id,Name,GarageId,ToolKeywords")] Tool tool)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +63,7 @@ namespace range_ton_ricaud.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GarageId"] = new SelectList(_context.Garage, "Id", "Id", tool.GarageId);
+            ViewData["GarageId"] = new SelectList(_context.Garage, "Id", "Name", tool.GarageId);
             return View(tool);
         }
 
@@ -82,7 +80,7 @@ namespace range_ton_ricaud.Controllers
             {
                 return NotFound();
             }
-            ViewData["GarageId"] = new SelectList(_context.Garage, "Id", "Id", tool.GarageId);
+            ViewData["GarageId"] = new SelectList(_context.Garage, "Id", "Name", tool.GarageId);
             return View(tool);
         }
 
@@ -91,7 +89,7 @@ namespace range_ton_ricaud.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,BrokenAt,GarageId")] Tool tool)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,BrokenAt,GarageId,ToolKeywords")] Tool tool)
         {
             if (id != tool.Id)
             {
@@ -118,7 +116,7 @@ namespace range_ton_ricaud.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["GarageId"] = new SelectList(_context.Garage, "Id", "Id", tool.GarageId);
+            ViewData["GarageId"] = new SelectList(_context.Garage, "Id", "Name", tool.GarageId);
             return View(tool);
         }
 
@@ -155,14 +153,14 @@ namespace range_ton_ricaud.Controllers
             {
                 _context.Tool.Remove(tool);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ToolExists(int id)
         {
-          return (_context.Tool?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Tool?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

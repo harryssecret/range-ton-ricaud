@@ -19,5 +19,6 @@ public class Tool
     public int GarageId { get; set; }
     public Garage? Garage { get; set; }
 
+    [Display(Name = "Keywords")]
     public ICollection<ToolKeyword>? ToolKeywords { get; set; }
 }
