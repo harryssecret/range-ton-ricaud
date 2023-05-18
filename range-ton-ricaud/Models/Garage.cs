@@ -7,7 +7,7 @@ public class Garage
     public int Id { get; set; }
     public string? Name { get; set; }
     public string? Description { get; set; } = null;
-    [Display(Name = "City Name")]
+    [Display(Name = "Located in")]
     public string CityName { get; set; }
 
     public ICollection<Tool>? Tools { get; }

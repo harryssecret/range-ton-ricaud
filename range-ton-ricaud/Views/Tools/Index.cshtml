@@ -24,7 +24,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Garage)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToolKeywords)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -40,7 +42,11 @@
                 @Html.DisplayFor(modelItem => item.BrokenAt)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Garage.Id)
+                @Html.DisplayFor(modelItem => item.Garage.Name)
+                    (@Html.DisplayFor(modelItem => item.Garage.CityName))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToolKeywords)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
