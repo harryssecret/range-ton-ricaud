@@ -234,7 +234,7 @@ namespace range_ton_ricaud.Migrations
 
                     b.HasIndex("ToolsId");
 
-                    b.ToTable("ToolToolKeyword");
+                    b.ToTable("ToolToolKeyword", (string)null);
                 });
 
             modelBuilder.Entity("range_ton_ricaud.Models.Garage", b =>
@@ -257,7 +257,7 @@ namespace range_ton_ricaud.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Garage");
+                    b.ToTable("Garage", (string)null);
                 });
 
             modelBuilder.Entity("range_ton_ricaud.Models.Tool", b =>
@@ -286,7 +286,7 @@ namespace range_ton_ricaud.Migrations
 
                     b.HasIndex("GarageId");
 
-                    b.ToTable("Tool");
+                    b.ToTable("Tool", (string)null);
                 });
 
             modelBuilder.Entity("range_ton_ricaud.Models.ToolKeyword", b =>
@@ -303,7 +303,7 @@ namespace range_ton_ricaud.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ToolKeyword");
+                    b.ToTable("ToolKeyword", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

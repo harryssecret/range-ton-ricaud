@@ -11,4 +11,7 @@ public class Garage
     public string CityName { get; set; }
 
     public ICollection<Tool>? Tools { get; }
+
+    public ApplicationUser User { get; set; }
+    public int UserId { get; set; }
 }
